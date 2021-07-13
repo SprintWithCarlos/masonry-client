@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.noHover {
+  pointer-events: none;
+}
+
+.top {
+  width: 100%;
+  height: 95px;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.topbarContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 160px auto 160px;
+      grid-template-columns: 160px auto 160px;
+}
+
+.topbarContainer section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 10px;
+}
+
+.topbarLeft .fab {
+  font-size: 24px;
+  margin-right: 16px;
+}
+
+.topbarCenter {
+  font-weight: 300;
+  padding-top: 10px;
+}
+
+.topbarMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.topbarMenuItem {
+  margin-right: 20px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.topbarMenuItem:hover {
+  color: white;
+}
+
+.topbarRight {
+  padding-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.topbarRight .fas {
+  font-size: 24px;
+  margin-left: 16px;
+  padding-top: 10px;
+}
+
+.topbarRightMenu {
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.topbarRightMenu .fas {
+  padding: 0;
+}
+
+.topbarRightMenu li {
+  font-weight: 300;
+}
+
+.searchMolecule {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.searchMolecule input[type=text] {
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding-left: 3rem;
+  height: 3.4375rem;
+  width: 300px;
+  border-radius: 12px;
+}
+
+.searchMolecule input[type=text] ::focus {
+  background-color: lightgray;
+  border-radius: 12px;
+}
+
+.searchMolecule ::-webkit-input-placeholder {
+  opacity: 0.5;
+}
+
+.searchMolecule :-ms-input-placeholder {
+  opacity: 0.5;
+}
+
+.searchMolecule ::-ms-input-placeholder {
+  opacity: 0.5;
+}
+
+.searchMolecule ::placeholder {
+  opacity: 0.5;
+}
+
+.searchMolecule .searchIcon {
+  position: absolute;
+  left: 1rem;
+  padding-top: 0.2px;
+  color: lightgray;
+}
+/*# sourceMappingURL=topbar.css.map */
