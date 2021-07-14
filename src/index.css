@@ -17,4 +17,12 @@ body {
 .link {
   text-decoration: none;
 }
+
+footer {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 1.5rem;
+  font-size: 0.875re;
+}
 /*# sourceMappingURL=index.css.map */

@@ -62,18 +62,7 @@ export const Masonry = (props) => {
           }
         },[masonryRef, props.search, scrollHeight, scrollTop, clientHeight, isLoading, imagesBatch, numberOfColumns, workingData?.length, posts?.length, posts?.data])
         
-        
-        
-        
-        
-        // console.log(workingData)
-        // [clientHeight, dispatch, imagesBatch, posts?.length, props.search, scrollHeight, scrollTop])
-        // [masonryRef, props.search, data.length, scrollHeight, scrollTop, clientHeight, isLoading, imagesBatch, numberOfColumns, data1?.length]
-        // const PF = process.env.REACT_APP_PUBLIC_FOLDER
-        // const host = process.env.REACT_APP_STORAGE || PF
-        // console.log(error)
         const newData = masonryGallery(workingData, numberOfColumns)
-        //  console.log(workingData)
         const handleDelete = async(e)=>{
             e.preventDefault()
             const {id} = e.target

@@ -12,6 +12,9 @@ function App() {
     <div className="App">
       <Topbar setSearch={setSearch }/>
       <Masonry search={search}/>
+      <footer>
+            created by <a href="https://sprintwithcarlos.github.io/" target="_blank">Sprint With Carlos</a>
+      </footer>
     </div>
   );
 
