@@ -43,7 +43,11 @@ body {
 .submit:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  background-color: #225f3a;
+}
+
+.error {
+  background-color: red;
+  color: white;
 }
 
 .loginB {
@@ -59,6 +63,5 @@ body {
 .disabled:hover {
   -webkit-transform: none;
           transform: none;
-  background-color: #3DB46D;
 }
 /*# sourceMappingURL=button.css.map */

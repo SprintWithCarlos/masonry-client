@@ -10,7 +10,7 @@ export const masonryGallery = (arr, numberOfColumns) => {
   const newArr = [];
   for (let i = 0; i < numberOfColumns; i++) {
     const subArray = [];
-    for (let j = i; j < arr.length; j += numberOfColumns) {
+    for (let j = i; j < arr?.length; j += numberOfColumns) {
       subArray.push(arr[j]);
     }
     newArr.push(subArray);

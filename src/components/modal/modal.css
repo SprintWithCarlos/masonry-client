@@ -56,7 +56,18 @@ h2 {
           justify-content: flex-end;
 }
 
-.buttonMolecule span {
+.box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 170px;
+  gap: 20px;
+}
+
+.box span {
   color: #BDBDBD;
   text-align: center;
   cursor: pointer;
@@ -64,17 +75,33 @@ h2 {
   transition: all 0.3s ease-in-out;
 }
 
-.buttonMolecule span:hover {
+.box span:hover {
   color: #4f4f4f;
 }
 
-.buttonMolecule > * {
+.box > * {
   width: 100px !important;
 }
 
-.buttonMolecule .message {
-  height: 60px;
-  background-color: rgba(235, 87, 87, 0.8);
+.errorMessage {
+  color: rgba(235, 87, 87, 0.8);
   border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-right: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.retry {
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 10px;
 }
 /*# sourceMappingURL=modal.css.map */

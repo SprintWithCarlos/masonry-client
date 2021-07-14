@@ -1,0 +1,20 @@
+.bouncing
+  display: flex
+  width: 200px
+  height: 100px
+  justify-content: center
+  align-items: center
+  margin-top: 200px
+
+.circle
+  animation: jump 0.5s infinite ease-in
+  &:nth-of-type(2)
+    animation-delay: 0.1s
+  &:nth-of-type(3)
+    animation-delay: 0.2s
+
+@keyframes jump
+  0%
+    transform: translateY(0px)
+  50%
+    transform: translateY(-10px)
