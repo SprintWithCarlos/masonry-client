@@ -16,7 +16,6 @@ export const useNumberOfColumns = ()=>{
     const [height, setHeight] = useState(getWindowsDimensions())
     useEffect(()=>{
         const handleResize = ()=>{
-            console.log(width, height)
             setWidth(getWindowsDimensions())
             setHeight(getWindowsDimensions())
             setNumberofColumns(getNumberOfColumns() )

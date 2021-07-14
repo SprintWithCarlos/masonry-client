@@ -3,7 +3,7 @@ import { InputMolecule } from '../molecules/inputMolecule/InputMolecule'
 import {Button} from '../button/Button'
 import { useState, useEffect, useContext} from 'react'
 import { Context } from '../../context/Context'
-
+const host = process.env.REACT_APP_HOST || 'http://localhost:5001/api/'
 export const Modal = () => {
     const {dispatch, error, isLoading, isValidated}= useContext(Context)
     console.log({dispatch, error, isLoading, isValidated})
@@ -35,7 +35,7 @@ export const Modal = () => {
                 data.append("file", blob)
                 data.append('title', labelValidator)
                 try {
-                    const sendPhoto = await fetch('http://localhost:5001/api/posts/upload', {
+                    const sendPhoto = await fetch(host + 'posts/upload', {
                         method: "POST",
                         body: data
                     })

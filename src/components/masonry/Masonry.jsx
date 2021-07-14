@@ -4,7 +4,7 @@ import { useNumberOfColumns } from '../../hooks/useWindowWidth'
 import { useState, useEffect, useRef, useContext } from 'react'
 import { Context } from '../../context/Context'
 import { Bouncing } from '../atoms/bouncing-three-dots-animation/Bouncing'
-
+const host = process.env.REACT_APP_HOST || 'http://localhost:5001/api/'
 export const Masonry = (props) => {
     const {posts, dispatch, isFetching, error} =useContext(Context)
     const numberOfColumns = useNumberOfColumns(props.search)
@@ -20,7 +20,7 @@ export const Masonry = (props) => {
         const fetchData = async()=>{
             try {
                 dispatch({type: "START_FETCHING"})
-                const res = await fetch('http://localhost:5001/api/posts')
+                const res = await fetch(host+"posts")
                 if(!res.ok){
                     throw Error(res.statusText)
                 }
@@ -80,7 +80,7 @@ export const Masonry = (props) => {
             const confirmation = window.confirm("Are you sure")
             confirmation && dispatch({type: "DELETE_START"})
             try {
-                const res = await fetch("http://localhost:5001/api/posts/"+ id, {
+                const res = await fetch(host + "posts/"+ id, {
                     method: "DELETE"
                 })
             if(res.ok){
