@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import './topbar.css'
-import {constants} from '../../constants'
 
 import { Context } from '../../context/Context'
 import Logo from './my_unsplash_logo.svg'
@@ -8,21 +7,11 @@ import { Button } from '../button/Button'
 import { Modal } from '../modal/Modal'
 
 export const Topbar = (props) => {
-    const [isActive, setIsActive] = useState(false)
-    const {user, dispatch} = useContext(Context)
-    const handleLogout = ()=>{
-        dispatch({type: "LOGOUT"})
-    }
-    const handleClick = e =>{
-        e.preventDefault()
-        setIsActive(!isActive)
-
-    }
-    
+    const {isActive, dispatch} = useContext(Context)
     return (
         <>
      
-           {isActive &&  <Modal handleClick={handleClick}/>}
+           {isActive &&  <Modal />}
         <nav className="top">
             <div className="topbarContainer">
                 <section className="topbarLeft">
@@ -36,7 +25,7 @@ export const Topbar = (props) => {
                 <div className="searchIcon" > <i className="fas fa-search"></i></div>
                    </div>
                 </section>
-                <section className="topbarRight" onClick={handleClick}>
+                <section className="topbarRight" onClick={()=>dispatch({type: "TOGGLE_MODAL" })}>
                     <Button text="Add a photo" type="submit" ></Button>
                 </section>
             </div>

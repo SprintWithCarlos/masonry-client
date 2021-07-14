@@ -2,19 +2,16 @@ import { useContext, useState } from 'react';
 import { Context } from './context/Context';
 import { Masonry } from './components/masonry/Masonry';
 import { Topbar } from './components/topbar/Topbar';
-import { Bouncing } from './components/atoms/bouncing-three-dots-animation/Bouncing';
+import { Button } from './components/button/Button';
 
 function App() {
 // const {user} = useContext(Context)
   const [search, setSearch] = useState('')
+ 
   return (
     <div className="App">
       <Topbar setSearch={setSearch }/>
-      <Bouncing size={20} backgroundColor={"black"} color={"white"}/>
-
       <Masonry search={search}/>
-      
-
     </div>
   );
 

@@ -56,34 +56,7 @@ h2 {
           justify-content: flex-end;
 }
 
-.box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 170px;
-  gap: 20px;
-}
-
-.box span {
-  color: #BDBDBD;
-  text-align: center;
-  cursor: pointer;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-.box span:hover {
-  color: #4f4f4f;
-}
-
-.box > * {
-  width: 100px !important;
-}
-
-.errorMessage {
+.buttonMolecule .errorMessage {
   color: rgba(235, 87, 87, 0.8);
   border-radius: 5px;
   display: -webkit-box;
@@ -97,6 +70,32 @@ h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 100px;
+  gap: 20px;
+}
+
+.box span {
+  color: #BDBDBD;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.box span:hover {
+  color: #4f4f4f;
 }
 
 .retry {

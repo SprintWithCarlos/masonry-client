@@ -27,3 +27,29 @@ export const fetchingError = (error) => ({
   type: "FETCHING_ERROR",
   payload: error,
 });
+export const toggleIsLoading = () => ({
+  type: "TOGGLE_ISLOADING",
+});
+export const toggleIsValidated = () => ({
+  type: "TOGGLE_ISVALIDATED",
+});
+export const sendError = (error) => ({
+  type: "SEND_ERROR",
+  payload: error,
+});
+export const reset = () => ({
+  type: "RESET",
+});
+export const toggleModal = () => ({
+  type: "TOGGLE_MODAL",
+});
+export const deleteStart = (id) => ({
+  type: "DELETE_START",
+});
+export const successGetDelete = () => ({
+  type: "SUCCESS_GET_DELETE",
+});
+export const failureGetDelete = (error) => ({
+  type: "FAILURE_GET_DELETE",
+  payload: error,
+});

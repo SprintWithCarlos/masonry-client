@@ -1,23 +1,21 @@
 import './modal.css'
 import { InputMolecule } from '../molecules/inputMolecule/InputMolecule'
 import {Button} from '../button/Button'
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useContext} from 'react'
+import { Context } from '../../context/Context'
 
-export const Modal = ({handleClick}) => {
-    const [isloading, setIsLoading] = useState(false)
-    const [error, setError] = useState()
+export const Modal = () => {
+    const {dispatch, error, isLoading, isValidated}= useContext(Context)
+    console.log({dispatch, error, isLoading, isValidated})
     const [labelValidator, setLabelValidator] = useState()
     const [linkValidator, setLinkValidator] = useState()
-    const [disabledState, setDisabledState] = useState(false)
     useEffect(() => {
         const regex =  /\b(http|https)?(:\/\/)?(\s*)\.(\w{2,4})(.*)/g
        
         if(labelValidator?.length > 3 && regex.test(String(linkValidator?.trim())) ) {
-            setDisabledState(true)
-        } else{
-            setDisabledState(false)
-        }
-    }, [labelValidator?.length, linkValidator?.length, linkValidator])
+            dispatch({type: "TOGGLE_ISVALIDATED"})
+        } 
+    }, [dispatch, labelValidator?.length, linkValidator])
    
     const saveImage = async(e)=>{
         e.preventDefault()
@@ -27,10 +25,10 @@ export const Modal = ({handleClick}) => {
         const blob = await res.blob()
         
         if(!regex.test(blob.type)){
-            setError("That link is not an image ;-)")
-            setDisabledState(false)
+            dispatch({type: "SEND_ERROR", payload: "That link is not an image ;-)" })
+           dispatch({type: "TOGGLE_ISVALIDATED"})
         } else{
-                setIsLoading(true) 
+                dispatch({type: "TOGGLE_ISLOADING"})
                 const data = new FormData();
                 const fileName = Date.now() + "-masongallery.jpg"
                 data.append("name", fileName)
@@ -41,17 +39,21 @@ export const Modal = ({handleClick}) => {
                         method: "POST",
                         body: data
                     })
-                    sendPhoto.ok && setIsLoading(false) 
-                    
+                    if(sendPhoto.ok ){
+                        dispatch({type: "TOGGLE_ISLOADING"})
+                        window.location.reload()
+                        
+                    }                    
                 } catch (err) {
+                    dispatch({type: "FETCHING_ERROR", payload: err })
                     
-                    setError(err)
                 }
+                
         }}
         catch (err) {
-            setError(err)
+            dispatch({type: "SEND_ERROR, payload: err"})
         }
-        // handleClick(e)
+        dispatch({type: "TOGGLE_MODAL"})
 
     }
     const validateLabel = (e)=>{
@@ -62,12 +64,11 @@ export const Modal = ({handleClick}) => {
     }
     const handleClose = async(e) =>{
         e.preventDefault()
-        setDisabledState(false)
-        handleClick(e)
+        dispatch({type: "RESET"})
+        dispatch({type: "TOGGLE_MODAL"})
     }
     const retry = () =>{
-         setDisabledState(false)
-         setError(undefined)
+        dispatch({type: "RESET"})
          setLinkValidator('')
          setLabelValidator('')
         
@@ -84,7 +85,8 @@ export const Modal = ({handleClick}) => {
                     {error && <p className="errorMessage">{error} <span className="retry" onClick={retry }>Try Again</span></p>   }
                     <div className="box">
                     <span onClick={handleClose}>Cancel</span>
-                    {!disabledState ? <Button text="submit" type="submit" disabled loading={isloading} error={error} /> : <Button text="submit" type="submit"  />}
+                    <Button text="submit" type="submit" disabled={!isValidated} isLoading={isLoading} error={error} /> 
+                    {/* {!disabledState ? <Button text="submit" type="submit" disabled loading={isloading} error={error} /> : <Button text="submit" type="submit"  />} */}
                     </div>
                 </div>
             </form>

@@ -5,6 +5,9 @@ const INITIAL_STATE = {
   posts: [],
   isFetching: false,
   error: false,
+  isLoading: false,
+  isValidated: false,
+  isActive: false,
 };
 export const Context = createContext(INITIAL_STATE);
 export const ContextProvider = ({ children }) => {
@@ -16,6 +19,9 @@ export const ContextProvider = ({ children }) => {
         posts: state.posts,
         isFetching: state.isFetching,
         error: state.error,
+        isLoading: state.isLoading,
+        isValidated: state.isValidated,
+        isActive: state.isActive,
         dispatch,
       }}
     >

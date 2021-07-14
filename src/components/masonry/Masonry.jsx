@@ -3,6 +3,7 @@ import { masonryGallery } from '../../utils'
 import { useNumberOfColumns } from '../../hooks/useWindowWidth'
 import { useState, useEffect, useRef, useContext } from 'react'
 import { Context } from '../../context/Context'
+import { Bouncing } from '../atoms/bouncing-three-dots-animation/Bouncing'
 
 export const Masonry = (props) => {
     const {posts, dispatch, isFetching, error} =useContext(Context)
@@ -59,7 +60,7 @@ export const Masonry = (props) => {
          return ()=> {
              window.removeEventListener('scroll', handleScroll)
           }
-        },[masonryRef, props.search, scrollHeight, scrollTop, clientHeight, isLoading, imagesBatch, numberOfColumns, workingData?.length, posts?.length])
+        },[masonryRef, props.search, scrollHeight, scrollTop, clientHeight, isLoading, imagesBatch, numberOfColumns, workingData?.length, posts?.length, posts?.data])
         
         
         
@@ -73,8 +74,30 @@ export const Masonry = (props) => {
         // console.log(error)
         const newData = masonryGallery(workingData, numberOfColumns)
         //  console.log(workingData)
+        const handleDelete = async(e)=>{
+            e.preventDefault()
+            const {id} = e.target
+            const confirmation = window.confirm("Are you sure")
+            confirmation && dispatch({type: "DELETE_START"})
+            try {
+                const res = await fetch("http://localhost:5001/api/posts/"+ id, {
+                    method: "DELETE"
+                })
+            if(res.ok){
+                dispatch({type: "DELETE_SUCCESS"})
+                window.location.reload()
+            }
+            } catch (err) {
+                dispatch({type: "DELETE_FAILURE", payload: err})
+            }
+
+        }
         return (
             <> 
+         {isFetching && (<div className="wrapperFullWidth">
+            <Bouncing dimensions={{size:20,height: 50, width: 100}} color={'#3DB46D'} backgroundColor={'transparent'}/>
+            </div>)}
+            
         {/* {isFetching && <p>Loading...</p>}
         {error && <p>{error}</p>}
     <code>{JSON.stringify(posts)}</code> */}
@@ -82,9 +105,10 @@ export const Masonry = (props) => {
         <ul className="masonry" style={{columns: numberOfColumns}} ref={masonryRef} >
             {newData.map((columns, i)=> {
                 return <section className="columns" key={i}>
-                {columns.map((item, i) => (
-                    <a href={item.images.large} key={i}>
-                    <li className="card" >
+                {columns.map((item) => (
+                    <li className="card" key={item._id} >
+                        <button className="btnDelete" id={item._id} onClick={e=> handleDelete(e)}>delete</button>
+                        <a href={item.images.large} >
                     <img
                             loading={i<=10?"eager": "lazy" }
                             srcSet={`${item.images.small} 500w, ${item.images.medium} 1000w, ${item.images.large} 1500w`}
@@ -94,16 +118,19 @@ export const Masonry = (props) => {
                                 (max-width: 1200px) 25w"
                                 src={item.images.small} alt={item.images.name} />
                         
-                                <p>delete</p>
                                 <div className="title">{item.title}</div >
                         
-                    </li>
                     </a>
+                    </li>
                     ))}
                 </section>})} 
             </ul>   
                     
-            {(isLoading)&& (<p>Loading...</p>)}
+            {(isLoading)&& <div className="wrapperFullWidth">
+            <Bouncing dimensions={{size:20,height: 50, width: 100}} color={'#3DB46D'} backgroundColor={'transparent'}/>
+            </div>}
+            {error && <p className="errorMessage">{error}</p>}
+
             { workingData?.length === posts?.data?.length && (<p>End of Gallery</p>)}  
         </>
     )

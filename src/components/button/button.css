@@ -26,7 +26,7 @@ body {
   border: none;
   outline: none;
   font-weight: 500;
-  width: 100%;
+  min-width: 120px;
   height: 55px;
   font-size: 1rem;
   -webkit-box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
@@ -48,6 +48,7 @@ body {
 .error {
   background-color: red;
   color: white;
+  cursor: not-allowed;
 }
 
 .loginB {
@@ -63,5 +64,26 @@ body {
 .disabled:hover {
   -webkit-transform: none;
           transform: none;
+}
+
+.loading {
+  background-color: #0088C4;
+  color: white;
+  cursor: progress;
+  padding-right: 0;
+}
+
+.buttonContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.animationWrapper {
+  position: absolute;
+  z-index: 10;
+  top: 28%;
+  left: 14%;
 }
 /*# sourceMappingURL=button.css.map */
