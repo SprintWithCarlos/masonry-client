@@ -18,11 +18,9 @@ export const useInfiniteScroll = ()=>{
         const handleScroll = ()=>{
        
             setScrollHeight(window.pageYOffset)
-            // console.log(scrollHeight, windowSize.height)
             if(trigger === 0 && ((scrollHeight) === (Math.floor(windowSize.height *0.6)))){
                 setTrigger(1)
             }
-            // console.log("Calculation", Math.floor(windowSize.height*0.6 * trigger))
             if(trigger>0 &&((scrollHeight) === (Math.floor(windowSize.height*0.6 * trigger)))){
                 setTrigger(trigger+1)
             }

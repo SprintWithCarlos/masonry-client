@@ -68,7 +68,7 @@ export const Masonry = (props) => {
             <Bouncing dimensions={{size:10,height: 50, width: 60}} color={'#fefefe'} backgroundColor={'transparent'}/>
             </div>}
             {error.type === "loading gallery" && <p className="errorMessage">{error.message}</p>}
-            {(!isFetching && !workingData?.length >0) && (<p className="noMatches">No matches.</p>)}
+            {(props.search && !workingData?.length >0) && (<p className="noMatches">No matches.</p>)}
         {(!isFetching && newData) && (<>
         <ul className="masonry" style={{columns: numberOfColumns}} ref={masonryRef} >
             {newData.map((columns, i)=> {
