@@ -6,16 +6,50 @@
           box-sizing: border-box;
 }
 
+.link {
+  text-decoration: none;
+}
+
 ul {
   list-style-type: none;
 }
 
 body {
   font-family: 'Noto Sans', sans-serif;
+  background-color: #FFEFDB;
 }
 
-.link {
-  text-decoration: none;
+.wrapperFullWidth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+main {
+  position: relative;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer p {
+  font-size: 0.875rem;
+  background-color: #fefefe;
+  padding: 0.25rem 0.5rem;
 }
 
 footer {

@@ -5,7 +5,7 @@ const Reducer = (state, action) => {
         posts: state.posts,
         user: null,
         isFetching: true,
-        error: false,
+        error: {},
         isLoading: false,
         isValidated: false,
       };
@@ -14,7 +14,7 @@ const Reducer = (state, action) => {
         posts: state.posts,
         user: action.payload,
         isFetching: false,
-        error: false,
+        error: {},
         isLoading: false,
         isValidated: false,
       };
@@ -32,7 +32,7 @@ const Reducer = (state, action) => {
         posts: state.posts,
         user: null,
         isFetching: false,
-        error: false,
+        error: {},
         isLoading: false,
         isValidated: false,
       };
@@ -40,19 +40,16 @@ const Reducer = (state, action) => {
       return {
         posts: [],
         isFetching: true,
-        error: false,
+        error: {},
         user: state.user,
         isLoading: false,
         isValidated: false,
       };
     case "FETCHING_SUCCESS":
       return {
+        ...state,
+        isFetching: !state.isFetching,
         posts: action.payload,
-        isFetching: false,
-        error: false,
-        user: state.user,
-        isLoading: false,
-        isValidated: false,
       };
     case "FETCHING_ERROR":
       return {

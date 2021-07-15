@@ -1,0 +1,25 @@
+.fetchingData {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  width: 100vw;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.fetchingData p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  max-width: 50ch;
+}
+/*# sourceMappingURL=app.css.map */

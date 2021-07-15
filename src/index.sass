@@ -4,11 +4,6 @@
   padding: 0
   // border: 1px solid red
   box-sizing: border-box
-
-ul
-  list-style-type: none
-body
-  font-family: 'Noto Sans', sans-serif
 //Colors
 $primaryBackgroundColor: white
 $primaryColor: #424242
@@ -19,11 +14,28 @@ $lightcoral: lightcoral
 $alert: red
 $submit: #3DB46D
 $login: #2403b4
+$lightbisque: #FFEFDB
 .link,
   text-decoration: none
+ul
+  list-style-type: none
+body
+  font-family: 'Noto Sans', sans-serif
+  background-color: $lightbisque
+.wrapperFullWidth
+  display: flex
+  justify-content: center
+  width: 100%
+main
+  position: relative
 footer
   width: 100%
   text-align: center
   position: fixed
   bottom: 1.5rem
-  font-size: 0.875re
+  display: flex
+  justify-content: center
+  p
+    font-size: 0.875rem
+    background-color: #fefefe
+    padding: 0.25rem 0.5rem

@@ -4,7 +4,7 @@ import { createContext, useReducer } from "react";
 const INITIAL_STATE = {
   posts: [],
   isFetching: false,
-  error: false,
+  error: {},
   isLoading: false,
   isValidated: false,
   isActive: false,

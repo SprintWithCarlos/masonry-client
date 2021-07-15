@@ -6,7 +6,7 @@ import { Context } from '../../context/Context'
 import { Bouncing } from '../atoms/bouncing-three-dots-animation/Bouncing'
 const host = process.env.REACT_APP_HOST || 'http://localhost:5001/api/'
 export const Masonry = (props) => {
-    const {posts, dispatch, isFetching, error} =useContext(Context)
+    const {posts, dispatch, error, isFetching} =useContext(Context)
     const numberOfColumns = useNumberOfColumns(props.search)
     const masonryRef =useRef(undefined)
     const [isLoading, setIsLoading] = useState()
@@ -15,24 +15,6 @@ export const Masonry = (props) => {
     const [clientHeight, setClientHeight ] = useState(undefined)
     const [imagesBatch, setImagesBatch] =useState(10)
     const dataSearched = new RegExp( props?.search, 'gi')
-    
-    useEffect(()=>{
-        const fetchData = async()=>{
-            try {
-                dispatch({type: "START_FETCHING"})
-                const res = await fetch(host+"posts")
-                if(!res.ok){
-                    throw Error(res.statusText)
-                }
-                const data = await res.json()
-                dispatch({type: "FETCHING_SUCCESS", payload: data}) 
-            } catch (err) {
-                dispatch({type: "FETCHING_ERROR", payload: err.message})
-            }
-        }
-        fetchData() 
-    },[dispatch])
-
     const workingData = posts?.data?.filter(item => (item?.title?.match(dataSearched))).slice(0, imagesBatch)
     useEffect(()=>{
 
@@ -42,12 +24,10 @@ export const Masonry = (props) => {
           setScrollTop( window.innerHeight)
           setClientHeight(masonryRef?.current?.clientHeight)
             if(!props?.search && (workingData?.length < posts?.data?.length)){
-               if(scrollHeight + scrollTop >= (clientHeight*0.85)){ 
+               if(scrollHeight + scrollTop >= (clientHeight*0.75)){ 
                     setIsLoading(true)
                     setImagesBatch(imagesBatch + 5)
-                    setTimeout(() => {
-                        setIsLoading(false)
-                    }, 3000);
+                    setTimeout(()=>setIsLoading(false), 1000)
             
           }
          }
@@ -83,14 +63,13 @@ export const Masonry = (props) => {
         }
         return (
             <> 
-         {isFetching && (<div className="wrapperFullWidth">
-            <Bouncing dimensions={{size:20,height: 50, width: 100}} color={'#3DB46D'} backgroundColor={'transparent'}/>
-            </div>)}
-            
-        {/* {isFetching && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-    <code>{JSON.stringify(posts)}</code> */}
-         {!workingData?.length >0 && (<p className="noMatches">No matches.</p>)}
+    
+     {(isLoading)&& <div className="isLoading">
+            <Bouncing dimensions={{size:10,height: 50, width: 60}} color={'#fefefe'} backgroundColor={'transparent'}/>
+            </div>}
+            {error.type === "loading gallery" && <p className="errorMessage">{error.message}</p>}
+            {(!isFetching && !workingData?.length >0) && (<p className="noMatches">No matches.</p>)}
+        {(!isFetching && newData) && (<>
         <ul className="masonry" style={{columns: numberOfColumns}} ref={masonryRef} >
             {newData.map((columns, i)=> {
                 return <section className="columns" key={i}>
@@ -114,13 +93,9 @@ export const Masonry = (props) => {
                     ))}
                 </section>})} 
             </ul>   
-                    
-            {(isLoading)&& <div className="wrapperFullWidth">
-            <Bouncing dimensions={{size:20,height: 50, width: 100}} color={'#3DB46D'} backgroundColor={'transparent'}/>
-            </div>}
-            {error && <p className="errorMessage">{error}</p>}
-
-            { workingData?.length === posts?.data?.length && (<p>End of Gallery</p>)}  
+            { workingData?.length === posts?.data?.length && (<p className="wrapperFullWidth" style={{maxWidth: "none", marginBottom: "60px"}}>End of Gallery</p>)}  
+        
+        </>) }
         </>
     )
 }
