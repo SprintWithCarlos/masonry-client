@@ -15,7 +15,7 @@ export const Topbar = (props) => {
         <nav className="top">
             <div className="topbarContainer">
                 <section className="topbarLeft">
-                    <div className="logo">
+                    <div className="logo" onClick={()=>window.location.reload()}>
                         <img src={Logo} alt="logo" />
                     </div>
                 </section>

@@ -39,7 +39,7 @@ export const Bouncing = ({dimensions, color, backgroundColor}) => {
     }
     const circleTransition ={
         duration: 0.4,
-        repeatType: 'loop',
+        yoyo: Infinity,
         ease: 'easeInOut'
     }
     return (
