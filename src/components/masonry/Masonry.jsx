@@ -9,7 +9,7 @@ export const Masonry = (props) => {
     const {posts, dispatch, error, isFetching} =useContext(Context)
     const numberOfColumns = useNumberOfColumns(props.search)
     const masonryRef =useRef(undefined)
-    const [isLoading, setIsLoading] = useState()
+    const [isLoading, setIsLoading] = useState(true)
     const [scrollHeight, setScrollHeight ] = useState(undefined)
     const [scrollTop, setScrollTop ] = useState(undefined)
     const [clientHeight, setClientHeight ] = useState(undefined)
