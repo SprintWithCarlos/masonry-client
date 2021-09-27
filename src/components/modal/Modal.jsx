@@ -35,7 +35,7 @@ export const Modal = () => {
                 data.append("file", blob)
                 data.append('title', labelValidator)
                 try {
-                    const sendPhoto = await fetch('http://localhost:5001/api/posts/upload', {
+                    const sendPhoto = await fetch('https://swc-image-processing.herokuapp.com/api/posts/upload', {
                         method: "POST",
                         body: data
                     })
